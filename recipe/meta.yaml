@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pancritic-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pancritic-{{ version }}.tar.gz
   sha256: 9dec88d1fdd9d1fc4670f928a01c6ca07893f3bd530885ad94e2addf76624de7
 
 build:
-  number: 0
+  number: 1
   noarch: python
   entry_points:
     - pancritic = pancritic.main:cli
@@ -20,9 +20,9 @@ build:
 requirements:
   host:
     - pip
-    - python
+    - python {{ python_min }}
   run:
-    - python
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -32,6 +32,7 @@ test:
     - pancritic --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/ickc/pancritic
